@@ -1,0 +1,23 @@
+{
+  "name": "moneyline-sports-api",
+  "version": "0.1.0",
+  "description": "Official JavaScript/TypeScript SDK for MoneyLine Sports API: live odds, player props, hit rates, +EV, arbitrage and scores.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "files": ["dist"],
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.js",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": ["sports api", "odds api", "sports betting api", "player props", "sports data", "nfl odds", "nba odds", "arbitrage", "expected value", "moneyline"],
+  "homepage": "https://www.moneylineapp.com/docs",
+  "repository": { "type": "git", "url": "git+https://github.com/moneyline-sports-api/moneyline-sports-api-js.git" },
+  "bugs": { "url": "https://github.com/moneyline-sports-api/moneyline-sports-api-js/issues" },
+  "author": "MoneyLine Sports API <cole@moneylineapp.com> (https://www.moneylineapp.com)",
+  "license": "MIT",
+  "devDependencies": { "typescript": "^5.6.0", "@types/node": "^22.0.0" }
+}
