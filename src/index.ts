@@ -37,7 +37,8 @@ export class MoneyLine {
     this.apiKey = options.apiKey ?? (typeof process !== 'undefined' ? process.env?.MONEYLINE_API_KEY : undefined)
     this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/$/, '')
     this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS
-    this.fetchImpl = options.fetch ?? fetch
+    // Call the global fetch through a wrapper: browsers throw "Illegal invocation" when fetch runs with this = the client.
+    this.fetchImpl = options.fetch ?? ((input, init) => fetch(input, init))
   }
 
   /** Calls any endpoint and returns the full response envelope (data + meta). */

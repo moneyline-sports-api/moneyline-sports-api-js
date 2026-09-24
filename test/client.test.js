@@ -26,3 +26,17 @@ test('ask posts one user message', async () => {
   await ml.ask('best NFL props tonight?')
   assert.deepEqual(JSON.parse(seen.init.body), { messages: [{ role: 'user', content: 'best NFL props tonight?' }] })
 })
+
+test('uses the global fetch the way browsers require (not bound to the client)', async () => {
+  const realFetch = globalThis.fetch
+  // Browsers reject fetch called with any other `this`, as "Illegal invocation".
+  globalThis.fetch = function (url, init) {
+    if (this !== undefined && this !== globalThis) throw new TypeError("Failed to execute 'fetch' on 'Window': Illegal invocation")
+    return fakeFetch(200, { success: true, data: ['ok'], meta: {}, error: null })(url, init)
+  }
+  try {
+    assert.deepEqual(await new MoneyLine({ apiKey: 'k' }).sports(), ['ok'])
+  } finally {
+    globalThis.fetch = realFetch
+  }
+})
