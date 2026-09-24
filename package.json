@@ -1,6 +1,6 @@
 {
   "name": "moneyline-sports-api",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Official JavaScript/TypeScript SDK for MoneyLine Sports API: live odds, player props, hit rates, +EV, arbitrage and scores.",
   "type": "module",
   "main": "./dist/index.js",
