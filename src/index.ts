@@ -95,7 +95,8 @@ export class MoneyLine {
   playerProps(query?: { league?: string; market?: string; player?: string; playerId?: string; bookmaker?: string; sourceType?: SourceType; limit?: number; page?: number }) {
     return this.get('/v1/player-props', query)
   }
-  hitRates(playerId: string, query?: { market?: string; line?: number }) {
+  /** Hit rates for one prop. The API rejects a call without both `market` and `line`. */
+  hitRates(playerId: string, query: { market: string; line: number }) {
     return this.get(`/v1/players/${encodeURIComponent(playerId)}/hit-rates`, query)
   }
 

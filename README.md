@@ -36,8 +36,8 @@ const ev = await ml.evBets({ league: 'nfl', limit: 10 })
 const arbs = await ml.arbitrage({ league: 'mlb' })
 
 // Hit rates over the last 5, 10 and 25 games and the season
-// (player IDs come back on every player-prop record)
-const rates = await ml.hitRates(playerId, { market: 'player_points' })
+// for one prop. Take the player ID and line from a player-prop record.
+const rates = await ml.hitRates('nba-p-3934672', { market: 'player_points', line: 24.5 })
 
 // Ask MoneyLine AI a question grounded in live data
 const answer = await ml.ask('Best NBA player props tonight?')
